@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djp.boot.mapper.MgdShUserModelMapper">
+	<resultMap id="BaseResultMap"
+		type="com.djp.boot.model.MgdShUserModel">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="MCH_ID" property="mchId" jdbcType="BIGINT" />
+		<result column="PID" property="pid" jdbcType="BIGINT" />
+		<result column="PIDS" property="pids" jdbcType="BIGINT" />
+		<result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password"
+			jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="IS_MCH" property="isMch" jdbcType="INTEGER" />
+		<result column="TEL_NO" property="telNo" jdbcType="VARCHAR" />
+		<result column="ADD_TIME" property="addTime" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="updateTime"
+			jdbcType="VARCHAR" />
+		<result column="SH_USER_STATUS" property="shUserStatus"
+			jdbcType="INTEGER" />
+		<result column="LOGIN_STATUS" property="loginStatus"
+			jdbcType="INTEGER" />
+		<result column="LOGIN_TIME" property="loginTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, MCH_ID,PID,PIDS, ACCOUNT, PASSWORD,NAME,IS_MCH,TEL_NO,
+		ADD_TIME, UPDATE_TIME,SH_USER_STATUS,LOGIN_STATUS,LOGIN_TIME
+	</sql>
+
+	<select id="queryAll" resultType="com.djp.boot.model.MgdShUserModel">
+		select
+		*
+		from
+		mgd_sh_user u limit #{_pagesize} OFFSET #{_skiprows}
+	</select>
+
+	<select id="updateShUser" parameterType="com.djp.boot.model.MgdShUserModel" resultType="java.lang.Integer">
+		update mgd_sh_user set LOGIN_STATUS=#{loginStatus} where ID=#{id}
+	</select>
+
+</mapper>
